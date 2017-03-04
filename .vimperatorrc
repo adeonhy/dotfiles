@@ -1,0 +1,24 @@
+"2.0 (created: 2009/03/28 23:48:07)
+map <Right> <C-n>
+map <C-l> :tabnext <CR>
+map <C-h> :tabprevious <CR>
+noremap j 5<C-e>
+noremap k 5<C-y>
+noremap J <PageDown>
+noremap K <PageUp>
+set complete=sl
+set guioptions=mbrB
+set history=1000
+set hlsearch
+set runtimepath=/Users/hy/.vimperator
+set titlestring=Firefox
+set verbose=7
+set visualbell
+set wildoptions=auto
+
+autocmd LocationChange .* js modes.passAllKeys = false
+autocmd LocationChange www\\.google\\.(co\\.jp|com)/reader js modes.passAllKeys = true
+
+source! ~/.vimperatorrc.local
+
+" vim: set ft=vimperator:

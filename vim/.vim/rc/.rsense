@@ -1,0 +1,3 @@
+home = /usr/local/Cellar/rsense/0.3/libexec
+load-path = /Users/hy/.rbenv/versions/2.2.4/lib/ruby/site_ruby/2.2.0:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/site_ruby/2.2.0/x86_64-darwin14:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/site_ruby:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/vendor_ruby/2.2.0:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/vendor_ruby/2.2.0/x86_64-darwin14:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/vendor_ruby:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/2.2.0:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/2.2.0/x86_64-darwin14
+gem-path = /Users/hy/.gem/ruby/2.2.0:/Users/hy/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0

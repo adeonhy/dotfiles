@@ -1,0 +1,19 @@
+escape ^z^z
+# hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
+hardstatus alwayslastline "[%y/%m/%d %02c] %`(%H) %-w%{=b bw}%n %t%{-}%+w"
+startup_message off
+autodetach on
+defscrollback 1024
+altscreen on
+
+bind s split
+bind v split -v
+bind w windowlist -b
+bind l next
+bind h prev
+bind o focus
+
+bind + resize +1
+bind - resize -1
+
+termcapinfo xterm* ti@:te@

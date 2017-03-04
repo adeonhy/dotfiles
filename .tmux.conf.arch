@@ -1,0 +1,26 @@
+set-option -g prefix C-s
+setw -g utf8 on
+set -g status-utf8 on
+set-window-option -g mode-keys vi
+
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy Enter copy-pipe 'cat > /tmp/hy-tmux-buffer ; xsel -bi < /tmp/hy-tmux-buffer'
+bind ] run "tmux set-buffer "`xsel -bo`"; tmux paste-buffer"
+
+set-option -g mode-mouse on
+set-option -g mouse-select-pane on
+set-option -g mouse-select-window on
+set-option -g mouse-resize-pane on
+set-option -g mouse-utf8 on
+
+bind C-r source-file ~/.tmux.conf.arch
+bind s split-window -v
+bind v split-window -h
+bind Tab select-pane -t :.+
+
+unbind l
+bind -r h select-pane -L
+bind -r j select-pane -D
+bind -r k select-pane -U
+bind -r l select-pane -R
+bind C-s run "tmux last-pane || tmux last-window || tmux new-window"

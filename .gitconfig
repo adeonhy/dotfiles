@@ -1,0 +1,20 @@
+[github]
+  user = adeonhy
+[user]
+	name = Naoya Ishisaki
+	email = adeonhy@gmail.com
+[core]
+	excludesfile = ~/.gitignore
+	editor = /Applications/MacVim.app/Contents/MacOS/Vim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[color]
+  ui = auto
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
