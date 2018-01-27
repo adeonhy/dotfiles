@@ -6,6 +6,14 @@
 export LESS='-g -i -M -R -S -W -z-4 -x4'
 
 ##=============================
+## go
+##=============================
+if [ -d ${HOME}/go  ] ; then
+  PATH=${HOME}/go/bin:${PATH}
+  export PATH
+fi
+
+##=============================
 ## rbenv
 ##=============================
 if [ -d ${HOME}/.rbenv  ] ; then
@@ -28,6 +36,11 @@ case "$(uname)" in
     ;;
 esac
 
+##=============================
+## NVM
+##=============================
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 ##=============================
 ## nodebrew
@@ -62,17 +75,6 @@ if [ -d "$GHC_DOT_APP" ]; then
 fi
 
 ##=============================
-## MacVim
-##=============================
-vim=/Applications/MacVim.app/Contents/MacOS/Vim
-view=/Applications/MacVim.app/Contents/MacOS/view
-if [ -x $vim ]; then
-  alias vi=$vim
-  alias vim=$vim
-  alias view=$view
-fi
-
-##=============================
 ## conscript (run scala file)
 ##=============================
 export CONSCRIPT_HOME="$HOME/.conscript"
@@ -82,21 +84,37 @@ export PATH=$CONSCRIPT_HOME/bin:$PATH
 ##=============================
 ## peco
 ##=============================
-function peco-select-history() {
-  local tac
-  if which tac > /dev/null; then
-    tac="tac"
-  else
-    tac="tail -r"
-  fi
-  BUFFER=$(history -n 1 |uniq | \
-    eval $tac | \
-    peco --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle clear-screen
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
+case "$(uname)" in
+  "Darwin")
+    function peco-select-history() {
+      local tac
+      if which tac > /dev/null; then
+        tac="tac"
+      else
+        tac="tail -r"
+      fi
+      BUFFER=$(history -n 1 |uniq | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+      CURSOR=$#BUFFER
+      zle clear-screen
+    }
+    zle -N peco-select-history
+    bindkey '^r' peco-select-history
+    ;;
+  "Linux")
+    ##=============================
+    ## zsh history
+    ## https://github.com/b4b4r07/history
+    ##=============================
+    # ZSH_HISTORY_FILTER_OPTIONS="--filter-branch --filter-dir"
+    ZSH_HISTORY_KEYBIND_GET="^r"
+    ZSH_HISTORY_KEYBIND_ARROW_UP="^p"
+    ZSH_HISTORY_KEYBIND_ARROW_DOWN="^n"
+
+    source ~/.zsh/history/init.zsh
+    ;;
+esac
 
 function peco-z-search
 {
@@ -115,6 +133,7 @@ function peco-z-search
 }
 zle -N peco-z-search
 bindkey '^f' peco-z-search
+
 
 ##=============================
 ## added by Anaconda3 4.2.0 installer

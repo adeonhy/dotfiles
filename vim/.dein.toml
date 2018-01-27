@@ -42,7 +42,7 @@ repo = 'Shougo/vimproc'
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 [[plugins]]
-repo = 'VimClojure'
+repo = 'vim-scripts/VimClojure'
 [[plugins]]
 repo = 'Shougo/vimshell'
 [[plugins]]
@@ -50,7 +50,7 @@ repo = 'scrooloose/syntastic'
 [[plugins]]
 repo = 'tpope/vim-surround'
 [[plugins]]
-repo = 'The-NERD-Commenter'
+repo = 'vim-scripts/The-NERD-Commenter'
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 [[plugins]]
@@ -63,6 +63,18 @@ repo = 'Shougo/neocomplete.vim'
 repo = 'osyo-manga/vim-monster'
 [[plugins]]
 repo = 'ujihisa/repl.vim'
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+[[plugins]]
+repo ='Shougo/unite.vim'
+[[plugins]]
+repo = 'haya14busa/vim-poweryank'
+[[plugins]]
+repo = 'othree/yajs.vim'
+[[plugins]]
+repo = 'maxmellon/vim-jsx-pretty'
 
 
 # [[plugins]]

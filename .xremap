@@ -1,0 +1,7 @@
+# simulate macOS's command key
+%w[a z x c v w t].each do |key|
+  remap "Super-#{key}", to: "C-#{key}"
+end
+
+remap 'C-n', to: 'Down'
+remap 'C-p', ro: 'Up'

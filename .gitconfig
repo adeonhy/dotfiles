@@ -5,7 +5,7 @@
 	email = adeonhy@gmail.com
 [core]
 	excludesfile = ~/.gitignore
-	editor = /Applications/MacVim.app/Contents/MacOS/Vim
+	editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

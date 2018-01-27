@@ -4,7 +4,7 @@ set encoding=utf-8
 ""set encoding=japan
 "set fileencodings=sjis
 set fileencoding=utf-8
-set fileencodings=utf-8,iso-2022-jp-3,euc-jp,euc-jisx0213
+set fileencodings=ucs-bom,utf-8,iso-2022-jp-3,euc-jp,euc-jisx0213
 set number
 set nocursorline
 set tabstop=2 shiftwidth=2 softtabstop=0
@@ -41,8 +41,13 @@ set autoread
 set hidden
 set vb t_vb=
 
+set modeline
+
 "undoファイル(*.un~)を一箇所にまとめる
-set undodir=~/.vim/undo
+set undodir=~/tmp
+
+"swpファイルの出力先
+set directory=~/tmp
 
 set foldmethod=syntax
 " set foldcolumn=1
@@ -89,8 +94,6 @@ nnoremap <silent> <BS> :tabprevious<CR>
 "nmap <silent> <C-Tab> :bn<CR>
 nmap <silent> <C-j> :bn<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
-"delete current buffer
-"map <silent> <F4> <ESC>:bd<CR>
 
 nmap j gj
 nmap k gk
@@ -113,16 +116,6 @@ inoremap <C-k> <C-o>D
 map <silent> <F2> <ESC>:MRU<CR>
 map <silent> <F3> <ESC>:NERDTreeToggle<CR>
 " map <silent> <F4> <ESC>:TlistToggle<CR>
-
-"inoremap { {}<LEFT>
-"inoremap [ []<LEFT>
-"inoremap " ""<LEFT>
-"vnoremap { "zdi{<C-R>z}<ESC>
-"vnoremap [ "zdi[<C-R>z]<ESC>
-"vnoremap ( "zdi(<C-R>z)<ESC>
-"vnoremap " "zdi"<C-R>z"<ESC>
-"vnoremap ' "zdi'<C-R>z'<ESC>
-"inoremap <C-Space> <ESC><RIGHT>a
 
 filetype on
 filetype plugin on
@@ -328,7 +321,7 @@ syntax on
 "--------------------
 "for Unite.vim
 "-------------------
-nnoremap <silent> <C-u>b :<C-u>Unite buffer_tab file_mru<CR>
+nnoremap <silent> <C-u>b :<C-u>Unite buffer<CR>
 nnoremap <silent> <C-u>f :<C-u>Unite buffer_tab file<CR>
 
 "--------------------
@@ -407,8 +400,97 @@ let g:deoplete#sources#omni#input_patterns = {
 \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
 \}
 
+" for vim-jsx
+let g:jsx_ext_required = 0
+
 let g:solarized_termcolors=256
 set background=dark
 " colorscheme solarized
 colorscheme mycolor
 " colorscheme zenburn
+
+" for ctrlp
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|build)$'
+
+"for airline
+" let g:airline_powerline_fonts = 1
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" --------------------------------
+" tabline setting
+" http://qiita.com/wadako111/items/755e753677dd72d8036d
+" --------------------------------
+" Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
+
+" The prefix key.
+nnoremap    [Tag]   <Nop>
+nmap    t [Tag]
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
+" tc 新しいタブを一番右に作る
+map <silent> [Tag]x :tabclose<CR>
+" tx タブを閉じる
+map <silent> [Tag]n :tabnext<CR>
+" tn 次のタブ
+map <silent> [Tag]p :tabprevious<CR>
+" tp 前のタブ
+map <silent> [Tag]t :Unite tab<CR>
+" tp 前のタブ
+
+" --------------------------------
+" json formatting by jq
+" http://qiita.com/tekkoc/items/324d736f68b0f27680b8
+" --------------------------------
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction
+
+" --------------------------------
+" poweryank
+" --------------------------------
+map <Leader>y <Plug>(operator-poweryank-osc52)
+
+augroup vimrc-incsearch-highlight
+  autocmd!
+  autocmd CmdlineEnter [/\?] :set hlsearch
+  autocmd CmdlineLeave [/\?] :set nohlsearch
+augroup END
