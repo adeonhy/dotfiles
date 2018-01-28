@@ -108,6 +108,16 @@ function peco-z-search
 }
 zle -N peco-z-search
 bindkey '^f' peco-z-search
+
+function tmux-peco {
+  which peco z > /dev/null
+  if [ $? -ne 0 ]; then
+    tmux $@
+  fi
+  local res=$(tmux ls | peco)
+  local session=$(echo $res | cut -f 1 -d :)
+  tmux attach -t $session
+}
 #############################
 
 ###########for code_sarch#############
