@@ -30,6 +30,8 @@ setopt auto_pushd
 setopt list_packed
 setopt nolistbeep
 
+bindkey -e
+
 # exterminal settings
 # autoload predict-on
 # predict-on
