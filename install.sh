@@ -26,7 +26,7 @@ link zsh .zsh
 ## vim
 link vim/.vimrc .vimrc
 link vim/.gvimrc .gvimrc
-link vim .vim
+link vim/.vim .vim
 link vim/.dein.toml .dein.toml
 link vim/.dein_lazy.toml .dein_lazy.toml
 
