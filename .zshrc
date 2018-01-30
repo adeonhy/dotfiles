@@ -45,6 +45,9 @@ zstyle ':completion:*' list-colors ''
 alias gosh="rlwrap -b '(){}[],#\";| ' gosh"
 alias rrun="rlwrap -b '(){}[],#\";| ' ros run"
 
+alias gtoa='git opana'
+alias gto='git open'
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
