@@ -75,6 +75,8 @@ repo = 'haya14busa/vim-poweryank'
 repo = 'othree/yajs.vim'
 [[plugins]]
 repo = 'maxmellon/vim-jsx-pretty'
+[[plugins]]
+repo = 'fatih/vim-go'
 
 
 # [[plugins]]

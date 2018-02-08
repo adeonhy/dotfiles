@@ -134,6 +134,10 @@ function peco-z-search
 zle -N peco-z-search
 bindkey '^f' peco-z-search
 
+##=============================
+## ghq/peco
+##=============================
+alias g='cd $(ghq root)/$(ghq list | peco)'
 
 ##=============================
 ## added by Anaconda3 4.2.0 installer
