@@ -77,10 +77,6 @@ case "$(uname)" in
       alias vim=$vim
       alias view=$view
     fi
-
-    g() {
-        open -a 'Google Chrome' http://www.google.co.jp/search\?q=$*
-    }
     ;;
     
 esac
