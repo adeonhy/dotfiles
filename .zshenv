@@ -17,7 +17,7 @@ fi
 ## rbenv
 ##=============================
 if [ -d ${HOME}/.rbenv  ] ; then
-  PATH=${HOME}/.rbenv/shims:${PATH}
+  PATH=${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:${PATH}
   export PATH
   eval "$(rbenv init -)"
 fi
@@ -50,10 +50,10 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 ##=============================
 ## java8
 ##=============================
-test -x /usr/libexec/java_home && JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
-if [ $? -eq 0 ]; then
-  export JAVA8_HOME
-fi
+# test -x /usr/libexec/java_home && JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
+# if [ $? -eq 0 ]; then
+  # export JAVA8_HOME
+# fi
 
 ##=============================
 ## gnu command
@@ -143,3 +143,9 @@ alias g='cd $(ghq root)/$(ghq list | peco)'
 ## added by Anaconda3 4.2.0 installer
 ##=============================
 export PATH="/Users/hy/anaconda3/bin:$PATH"
+
+##=============================
+## Disable spring(rails)
+##=============================
+# export DISABLE_SPRING=1
+

@@ -77,6 +77,12 @@ repo = 'othree/yajs.vim'
 repo = 'maxmellon/vim-jsx-pretty'
 [[plugins]]
 repo = 'fatih/vim-go'
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+[[plugins]]
+repo = 'aklt/plantuml-syntax'
+# [[plugins]]
+# repo = 'posva/vim-vue'
 
 
 # [[plugins]]

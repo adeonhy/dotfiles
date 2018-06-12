@@ -348,7 +348,7 @@ let g:indent_guides_space_guides=1
 
 hi IndentGuidesOdd  ctermbg=235
 hi IndentGuidesEven ctermbg=237
-au FileType coffee,ruby,javascript,python IndentGuidesEnable
+"au FileType coffee,ruby,javascript,python IndentGuidesEnable
 nmap <silent><Leader>ig <Plug>IndentGuidesToggle
 
 "--------------------
@@ -402,6 +402,9 @@ let g:deoplete#sources#omni#input_patterns = {
 
 " for vim-jsx
 let g:jsx_ext_required = 0
+
+" for vim-vue
+au BufRead,BufNewFile *.vue setfiletype html
 
 let g:solarized_termcolors=256
 set background=dark
