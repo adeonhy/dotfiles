@@ -47,6 +47,7 @@ alias rrun="rlwrap -b '(){}[],#\";| ' ros run"
 
 alias gtoa='git opena'
 alias gto='git open'
+alias gs='git status'
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
@@ -77,6 +78,7 @@ case "$(uname)" in
       alias vim=$vim
       alias view=$view
     fi
+    alias vi=nvim
     ;;
     
 esac

@@ -153,4 +153,10 @@ export PATH="/Users/hy/anaconda3/bin:$PATH"
 ## peco on git checkout
 ## https://qiita.com/ymm1x/items/a735e82244a877ac4d23
 ##=============================
-alias gch='git branch -a --sort=-authordate | cut -b 3- | perl -pe '\''s#^remotes/origin/###'\'' | perl -nlE '\''say if !$c{$_}++'\'' | grep -v -- "->" | peco | xargs git checkout'
+alias gc='git branch -a --sort=-authordate | cut -b 3- | perl -pe '\''s#^remotes/origin/###'\'' | perl -nlE '\''say if !$c{$_}++'\'' | grep -v -- "->" | peco | xargs git checkout'
+
+##=============================
+## for noin
+##=============================
+export RAILS_DB_HOST='127.0.0.1'
+export RAILS_ES_HOST='127.0.0.1'

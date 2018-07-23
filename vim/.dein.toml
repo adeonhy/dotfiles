@@ -81,8 +81,8 @@ repo = 'fatih/vim-go'
 repo = 'nathanaelkane/vim-indent-guides'
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
-# [[plugins]]
-# repo = 'posva/vim-vue'
+[[plugins]]
+repo = 'ruby-formatter/rufo-vim'
 
 
 # [[plugins]]
