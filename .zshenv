@@ -155,6 +155,8 @@ export PATH="/Users/hy/anaconda3/bin:$PATH"
 ##=============================
 alias gc='git branch -a --sort=-authordate | cut -b 3- | perl -pe '\''s#^remotes/origin/###'\'' | perl -nlE '\''say if !$c{$_}++'\'' | grep -v -- "->" | peco | xargs git checkout'
 
+alias gph='git push origin HEAD'
+
 ##=============================
 ## for noin
 ##=============================
