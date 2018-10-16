@@ -134,6 +134,14 @@ function peco-z-search
 zle -N peco-z-search
 bindkey '^f' peco-z-search
 
+function peco-kill(){
+    proc=`ps aux | peco`
+    pid=`echo "$proc" | awk '{print $2}'`
+    echo "kill pid:$pid. [$proc]"
+    kill $pid
+}
+alias pkill='peco-kill'
+
 ##=============================
 ## ghq/peco
 ##=============================
@@ -156,6 +164,7 @@ export PATH="/Users/hy/anaconda3/bin:$PATH"
 alias gc='git branch -a --sort=-authordate | cut -b 3- | perl -pe '\''s#^remotes/origin/###'\'' | perl -nlE '\''say if !$c{$_}++'\'' | grep -v -- "->" | peco | xargs git checkout'
 
 alias gph='git push origin HEAD'
+alias gphf='git push -f origin HEAD'
 
 ##=============================
 ## for noin
