@@ -57,7 +57,7 @@ case "$(uname)" in
     ##for GNU ls
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
-    alias vi='vim'
+    alias vi='nvim'
 
     export JAVA_HOME=/usr/lib/jvm/default
     export PATH=$PATH:$JAVA_HOME/bin

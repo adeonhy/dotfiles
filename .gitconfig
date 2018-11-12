@@ -1,11 +1,11 @@
 [github]
   user = adeonhy
 [user]
-	name = Naoya Ishisaki
+	name = Naoya Matsuyama
 	email = adeonhy@gmail.com
 [core]
 	excludesfile = ~/.gitignore
-	editor = vim
+	editor = vi
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

@@ -85,7 +85,7 @@ export PATH=$CONSCRIPT_HOME/bin:$PATH
 ## peco
 ##=============================
 case "$(uname)" in
-  "Darwin")
+  "Darwin" | "Linux")
     function peco-select-history() {
       local tac
       if which tac > /dev/null; then
@@ -112,7 +112,7 @@ case "$(uname)" in
     ZSH_HISTORY_KEYBIND_ARROW_UP="^p"
     ZSH_HISTORY_KEYBIND_ARROW_DOWN="^n"
 
-    source ~/.zsh/history/init.zsh
+    #source ~/.zsh/history/init.zsh
     ;;
 esac
 
@@ -171,3 +171,8 @@ alias gphf='git push -f origin HEAD'
 ##=============================
 export RAILS_DB_HOST='127.0.0.1'
 export RAILS_ES_HOST='127.0.0.1'
+
+##=============================
+## for chrome-remote-desktop
+##=============================
+export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES='1920x1080'
