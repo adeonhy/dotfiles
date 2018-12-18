@@ -53,8 +53,6 @@ set foldmethod=syntax
 " set foldcolumn=1
 set foldlevelstart=99
 
-" _(underscore)を単語区切りにする
-set iskeyword-=_
 syntax on
 
 " □とか○の文字があってもカーソル位置がずれないようにする
