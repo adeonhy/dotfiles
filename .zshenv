@@ -165,6 +165,7 @@ alias gc='git branch -a --sort=-authordate | cut -b 3- | perl -pe '\''s#^remotes
 
 alias gph='git push origin HEAD'
 alias gphf='git push -f origin HEAD'
+alias gp='git pull'
 
 ##=============================
 ## for noin
