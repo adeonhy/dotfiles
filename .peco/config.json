@@ -4,6 +4,8 @@
     "C-n": "peco.SelectDown",
     "C-k": "peco.SelectUp",
     "C-j": "peco.SelectDown",
-    "C-c": "peco.Cancel"
+    "C-c": "peco.Cancel",
+    "C-u": "peco.peco.ScrollPageUp",
+    "C-d": "peco.peco.ScrollPageDown"
   }
 }
