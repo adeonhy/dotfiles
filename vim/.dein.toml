@@ -83,6 +83,8 @@ repo = 'nathanaelkane/vim-indent-guides'
 repo = 'aklt/plantuml-syntax'
 [[plugins]]
 repo = 'ruby-formatter/rufo-vim'
+[[plugins]]
+repo = 'elmcast/elm-vim'
 
 
 # [[plugins]]
