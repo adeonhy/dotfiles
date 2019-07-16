@@ -1,1 +1,0 @@
-/Users/noin-admin/.vimrc

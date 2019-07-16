@@ -9,6 +9,9 @@ export LESS='-g -i -M -R -S -W -z-4 -x4'
 ## go
 ##=============================
 if [ -d ${HOME}/go  ] ; then
+  GOPATH=${HOME}/go
+  export GOPATH
+
   PATH=${HOME}/go/bin:${PATH}
   export PATH
 fi
@@ -177,3 +180,13 @@ export RAILS_ES_HOST='127.0.0.1'
 ## for chrome-remote-desktop
 ##=============================
 export CHROME_REMOTE_DESKTOP_DEFAULT_DESKTOP_SIZES='1920x1080'
+
+##=============================
+## for Google Cloud SDK
+##=============================
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hy/Library/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hy/Library/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/hy/Library/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hy/Library/google-cloud-sdk/completion.zsh.inc'; fi

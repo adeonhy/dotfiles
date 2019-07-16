@@ -4,7 +4,7 @@ set encoding=utf-8
 ""set encoding=japan
 "set fileencodings=sjis
 set fileencoding=utf-8
-set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,euc-jp,euc-jisx0213
+set fileencodings=ucs-bom,utf-8,iso-2022-jp-3,euc-jp,euc-jisx0213
 set number
 set nocursorline
 set tabstop=2 shiftwidth=2 softtabstop=0
@@ -52,7 +52,6 @@ set directory=~/tmp
 set foldmethod=syntax
 " set foldcolumn=1
 set foldlevelstart=99
-
 syntax on
 
 " □とか○の文字があってもカーソル位置がずれないようにする
@@ -122,21 +121,9 @@ filetype on
 filetype plugin on
 filetype indent on
 
-"短縮形の登録
-"iab re require
-"iab cl class
-"iab mo module
-"iab ret return
-"iab res rescue
-"iab ens ensure
-
 "-------------------------------------------------
 "filetype settings
 "-------------------------------------------------
-au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-"インデント設定
-autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
-
 augroup FtAutocmd
     au!
 
@@ -221,16 +208,54 @@ if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
 endif
-
+if has('iconv')
+  let s:enc_euc = 'euc-jp'
+  let s:enc_jis = 'iso-2022-jp'
+  " iconvがeucJP-msに対応しているかをチェック
+  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
+    let s:enc_euc = 'eucjp-ms'
+    let s:enc_jis = 'iso-2022-jp-3'
+  " iconvがJISX0213に対応しているかをチェック
+  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
+    let s:enc_euc = 'euc-jisx0213'
+    let s:enc_jis = 'iso-2022-jp-3'
+  endif
+  " fileencodingsを構築
+  if &encoding ==# 'utf-8'
+    let s:fileencodings_default = &fileencodings
+    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
+    let &fileencodings = &fileencodings .','. s:fileencodings_default
+    unlet s:fileencodings_default
+  else
+    let &fileencodings = &fileencodings .','. s:enc_jis
+    set fileencodings+=utf-8,ucs-2le,ucs-2
+    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
+      set fileencodings+=cp932
+      set fileencodings-=euc-jp
+      set fileencodings-=euc-jisx0213
+      set fileencodings-=eucjp-ms
+      let &encoding = s:enc_euc
+      let &fileencoding = s:enc_euc
+    else
+      let &fileencodings = &fileencodings .','. s:enc_euc
+    endif
+  endif
+  " 定数を処分
+  unlet s:enc_euc
+  unlet s:enc_jis
+endif
+" 日本語を含まない場合は fileencoding に encoding を使うようにする
+if has('autocmd')
+  function! AU_ReCheck_FENC()
+    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
+      let &fileencoding=&encoding
+    endif
+  endfunction
+  autocmd BufReadPost * call AU_ReCheck_FENC()
+endif
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
-" □とか○の文字があってもカーソル位置がずれないようにする
 
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
-
-set nocompatible               " be iMproved
 filetype off
 
 " dein settings {{{
@@ -328,8 +353,7 @@ let g:rsenseUseOmniFunc = 1
 " --------------------------------
 " syntastic_mode_mapをactiveにするとバッファ保存時にsyntasticが走る
 " active_filetypesに、保存時にsyntasticを走らせるファイルタイプを指定する
-" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['rubocop']
 
 " --------------------------------
@@ -380,6 +404,7 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#enabled = 1
 
 " --------------------------------
 " tabline setting
@@ -458,6 +483,56 @@ augroup vimrc-incsearch-highlight
 augroup END
 
 " --------------------------------
-" ruby-formatter/rufo-vim
+" vim-lsp
 " --------------------------------
-let g:rufo_auto_formatting = 0
+let g:lsp_diagnostics_enabled = 0
+" debug
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+" for go
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+" for Ruby
+if executable('solargraph')
+    " gem install solargraph
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
+        \ })
+endif
+
+" for Elm
+if executable('elm-language-server')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'elm-language-server',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'elm-language-server --stdio']},
+    \ 'initialization_options': {
+      \ 'runtime': 'node',
+      \ 'elmPath': 'elm',
+      \ 'elmFormatPath': 'elm-format',
+      \ 'elmTestPath': 'elm-test',
+      \ 'rootPatterns': 'elm.json'
+      \ },
+    \ 'whitelist': ['elm'],
+    \ })
+endif
+
+" for js
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'javascript support using typescript-language-server',
+    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+    \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+    \ 'whitelist': ['javascript', 'javascript.jsx'],
+    \ })
+endif
