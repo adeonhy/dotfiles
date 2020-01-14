@@ -4,13 +4,13 @@
 	name = Naoya Matsuyama
 	email = adeonhy@gmail.com
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/hy/.gitignore
 	editor = vi
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [color]
   ui = auto
@@ -23,3 +23,6 @@
   # Open files
   open = "!vim $(git diff --name-only)"
   opena = "!vim  $(git diff --staged --name-only)"
+	webui = !/Users/hy/.git-webui/release/libexec/git-core/git-webui
+[webui]
+	autoupdate = true

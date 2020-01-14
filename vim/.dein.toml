@@ -39,14 +39,14 @@ hook_post_update = '''
 #
 [[plugins]]
 repo = 'Shougo/vimproc'
-[[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
+# [[plugins]]
+# repo = 'ctrlpvim/ctrlp.vim'
 [[plugins]]
 repo = 'vim-scripts/VimClojure'
 [[plugins]]
 repo = 'Shougo/vimshell'
-[[plugins]]
-repo = 'scrooloose/syntastic'
+# [[plugins]]
+# repo = 'scrooloose/syntastic'
 [[plugins]]
 repo = 'tpope/vim-surround'
 [[plugins]]
@@ -57,8 +57,8 @@ repo = 'nathanaelkane/vim-indent-guides'
 repo = 'kchmck/vim-coffee-script'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
+# [[plugins]]
+# repo = 'Shougo/neocomplete.vim'
 [[plugins]]
 repo = 'osyo-manga/vim-monster'
 [[plugins]]
@@ -67,16 +67,16 @@ repo = 'ujihisa/repl.vim'
 repo = 'vim-airline/vim-airline'
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
-[[plugins]]
-repo ='Shougo/unite.vim'
+# [[plugins]]
+# repo ='Shougo/unite.vim'
 [[plugins]]
 repo = 'haya14busa/vim-poweryank'
-[[plugins]]
-repo = 'othree/yajs.vim'
-[[plugins]]
-repo = 'maxmellon/vim-jsx-pretty'
-[[plugins]]
-repo = 'fatih/vim-go'
+# [[plugins]]
+# repo = 'othree/yajs.vim'
+# [[plugins]]
+# repo = 'maxmellon/vim-jsx-pretty'
+# [[plugins]]
+# repo = 'fatih/vim-go'
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
 [[plugins]]
@@ -105,3 +105,7 @@ repo = 'prabirshrestha/vim-lsp'
 repo = 'prabirshrestha/asyncomplete.vim'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'

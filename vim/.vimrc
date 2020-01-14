@@ -1,6 +1,6 @@
 "## 基本設定#########################################################
 set termencoding=utf-8
-set encoding=utf-8
+" set encoding=utf-8
 ""set encoding=japan
 "set fileencodings=sjis
 set fileencoding=utf-8
@@ -22,7 +22,7 @@ set expandtab
 "インクリメンタルサーチを行う
 set incsearch
 "listで表示される文字のフォーマットを指定する
-set listchars=eol:$,tab:>\ ,extends:<
+set listchars=tab:»-,extends:<,trail:-
 "閉じ括弧が入力されたとき、対応する括弧を表示する
 set showmatch
 "検索時に大文字を含んでいたら大/小を区別
@@ -525,6 +525,7 @@ if executable('elm-language-server')
       \ },
     \ 'whitelist': ['elm'],
     \ })
+  autocmd BufWritePre *.elm LspDocumentFormat
 endif
 
 " for js
