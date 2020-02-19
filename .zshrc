@@ -170,7 +170,12 @@ export NVM_DIR="$HOME/.nvm"
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /home/hy/.nvm/versions/node/v4.3.2/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/hy/.nvm/versions/node/v4.3.2/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
+<<<<<<< Updated upstream
 
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/hy/dev/your-name/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/hy/dev/your-name/node_modules/tabtab/.completions/slss.zsh
+[[ -f ~/dev/your-name/node_modules/tabtab/.completions/slss.zsh ]] && . ~/dev/your-name/node_modules/tabtab/.completions/slss.zsh
+=======
+# for cyan
+source /usr/share/nvm/init-nvm.sh
+
