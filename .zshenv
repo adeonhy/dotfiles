@@ -190,3 +190,9 @@ if [ -f '/Users/hy/Library/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hy/L
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/hy/Library/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hy/Library/google-cloud-sdk/completion.zsh.inc'; fi
+
+##=============================
+## rust
+##=============================
+PATH=${HOME}/.cargo/bin:${PATH}
+export PATH

@@ -131,6 +131,7 @@ augroup FtAutocmd
     au FileType ruby call Ruby_Setting()
     au FileType scheme call Scheme_Setting()
 augroup END
+
 "-------------------------------------------------
 "for ruby settings
 "-------------------------------------------------
@@ -167,37 +168,6 @@ function! Ruby_Setting()
     map  <silent> <S-F5> :pc<CR>
 endfunction
 
-"---------------------------------------------------
-"for scheme settings
-"---------------------------------------------------
-function! Scheme_eval_vsplit() range
-    if &filetype == "scheme"
-        let src = tempname()
-        let dst = "Scheme_Output"
-        " put current buffer's content in a temp file
-        silent execute ": " . a:firstline . "," . a:lastline . "w " . src
-        " open the preview window
-        silent execute ":pedit! " . dst
-        " change to preview window
-        wincmd P
-        " set options
-        setlocal buftype=nofile
-        setlocal noswapfile
-        setlocal syntax=none
-        setlocal bufhidden=delete
-        " replace current buffer with ruby's output
-        silent execute ":%! gosh " . src . " 2>&1 "
-        " change back to the source buffer
-        wincmd p
-    endif
-endfunction
-
-function! Scheme_Setting()
-    setlocal ts=2 sts=2 sw=2
-    vmap <silent> <F5> :call Scheme_eval_vsplit()<CR>
-    nmap <silent> <F5> mzggVG<F5>`z
-    map  <silent> <S-F5> :pc<CR>
-endfunction
 
 function! Javascript_Setting()
     setlocal ts=2 sts=2 sw=2
@@ -333,14 +303,6 @@ hi IndentGuidesOdd  ctermbg=235
 hi IndentGuidesEven ctermbg=237
 "au FileType coffee,ruby,javascript,python IndentGuidesEnable
 nmap <silent><Leader>ig <Plug>IndentGuidesToggle
-
-"--------------------
-"for VimClojure
-"-------------------
-let vimclojure#HighlightBuiltins=1
-let vimclojure#HighlightContrib=1
-let vimclojure#DynamicHighlighting=1
-let vimclojure#ParenRainbow=1
 
 " -------------------------------
 " Rsense
@@ -485,6 +447,7 @@ augroup END
 " --------------------------------
 " vim-lsp
 " --------------------------------
+let g:lsp_settings_servers_dir = '~/.vim/servers'
 let g:lsp_diagnostics_enabled = 0
 " debug
 " let g:lsp_log_verbose = 1

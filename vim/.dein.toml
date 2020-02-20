@@ -109,3 +109,5 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 repo = 'leafgarland/typescript-vim'
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
