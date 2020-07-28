@@ -41,6 +41,10 @@ set-window-option -g window-status-current-format "#[fg=colour255,bg=colour27,bo
 set-option -g status-left-length 90
 set-option -g status-right-length 90
 
+# change active/inactive pane color
+set-option -g window-style 'bg=#444444'
+set-option -g window-active-style 'bg=#000000'
+
 # #H => マシン名
 # #P => ペイン番号
 # 最左に表示

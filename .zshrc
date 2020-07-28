@@ -171,8 +171,16 @@ export NVM_DIR="$HOME/.nvm"
 [[ -f /home/hy/.nvm/versions/node/v4.3.2/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/hy/.nvm/versions/node/v4.3.2/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
 # for cyan
-source /usr/share/nvm/init-nvm.sh
+if [ -e /usr/share/nvm/init-nvm ] ;then
+  source /usr/share/nvm/init-nvm.sh
+fi
 
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/hy/dev/aphrodite/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/hy/dev/aphrodite/node_modules/tabtab/.completions/slss.zsh
+
+[ -f "/Users/hy/.shopify-app-cli/shopify.sh" ] && source "/Users/hy/.shopify-app-cli/shopify.sh"
